@@ -1,0 +1,41 @@
+{
+  "name": "SendLink X",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "Send specified link to user-defined web-service",
+  "homepage_url": "https://github.com/RushOnline/chrome-sendlink",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "default_locale": "en",
+  "background": {
+    "scripts": [
+      "build/scripts/background.js"
+    ],
+    "persistent": false
+  },
+  "options_page": "build/pages/options.html",
+  "browser_action": {
+    "default_icon": "icons/icon19.png",
+    "default_title": "browser action demo",
+    "default_popup": "build/pages/toolbar_popup.html"
+  },
+  "permissions": [
+    "contextMenus",
+    "cookies",
+    "*://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/"
+      ],
+      "js": [
+        "lib/jquery-2.0.0.js",
+        "build/scripts/content.js"
+      ]
+    }
+  ]
+}
