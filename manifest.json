@@ -25,12 +25,12 @@
   "permissions": [
     "contextMenus",
     "cookies",
-    "*://*/*"
+    "http://*/*"
   ],
   "content_scripts": [
     {
       "matches": [
-        "*://*/"
+        "<all_urls>"
       ],
       "js": [
         "lib/jquery-2.0.0.js",
