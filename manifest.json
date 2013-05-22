@@ -12,20 +12,21 @@
   "default_locale": "en",
   "background": {
     "scripts": [
-      "build/scripts/background.js"
+      "src/background.js"
     ],
     "persistent": false
   },
-  "options_page": "build/pages/options.html",
+  "options_page": "src/options.html",
   "browser_action": {
     "default_icon": "icons/icon19.png",
     "default_title": "browser action demo",
-    "default_popup": "build/pages/toolbar_popup.html"
+    "default_popup": "src/toolbar_popup.html"
   },
   "permissions": [
     "contextMenus",
     "cookies",
-    "http://*/*"
+    "http://*/*",
+    "https://*/*"
   ],
   "content_scripts": [
     {
@@ -34,7 +35,7 @@
       ],
       "js": [
         "lib/jquery-2.0.0.js",
-        "build/scripts/content.js"
+        "src/content.js"
       ]
     }
   ]

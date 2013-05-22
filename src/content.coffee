@@ -2,7 +2,7 @@ $ ->
   DEBUG = true
 
   debug =  ->
-    console.debug arguments if DEBUG
+    console.debug.apply console, arguments if DEBUG
     return
 
   debug 'SendLink Loaded OK'

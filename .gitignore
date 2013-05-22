@@ -1,2 +1,2 @@
-/build/pages/*.html
-/build/scripts/*.js
+*.html
+*.js

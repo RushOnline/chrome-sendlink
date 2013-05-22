@@ -1,33 +1,22 @@
 #!/bin/sh
 
-for CHECKLIST in /usr/bin/inotifywait /usr/bin/haml /usr/bin/coffee; do
+for CHECKLIST in /usr/bin/inotifywait /usr/bin/haml /usr/bin/coffee /usr/bin/make; do
     if [ ! -x $CHECKLIST ]; then
         cat <<EOF
 Please install following packages:
-sudo apt-get install inotify-tools coffeescript ruby-haml
+sudo apt-get install inotify-tools coffeescript ruby-haml make
 EOF
         exit 1
     fi
 done
 
+make -C src
+
 inotifywait -m -r -e modify src | \
 while read DIRNAME EVENT FILENAME; do
-    BASENAME="${FILENAME%.*}"
-    EXT="${FILENAME#*.}"
-    FILEPATH="$DIRNAME$FILENAME"
-
-    case $EXT in
-        coffee)
-            RUN="coffee -o build/scripts -bc $FILEPATH"
-            ;;
-        haml)
-            RUN="haml $FILEPATH build/pages/${BASENAME}.html"
-            ;;
-        *)
-            RUN=""
+    case "${FILENAME#*.}" in
+        coffee|haml)
+            make -C src
             ;;
     esac
-
-    echo $RUN
-    $($RUN)
 done
