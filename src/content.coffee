@@ -21,7 +21,7 @@ $ ->
       $(selector).each ->
         if  $(this).prev('.x-sendlink').length == 0
           $(this).before '<button data-href="' + this.href + '" href="#" class="x-sendlink">Play</a>&nbsp;'
-    $('.x-sendlink').on 'click', ->
+    $('.x-sendlink').on 'click.x-sendlink', ->
       request =
           type: "POST"
           url: 'http://localhost:8001/'
